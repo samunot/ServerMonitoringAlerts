@@ -1,0 +1,19 @@
+{
+  "name": "siftsecurity",
+  "version": "1.0.0",
+  "description": "**The service**",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Shubham Munot",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/client": "^4.1.0",
+    "body-parser": "^1.18.2",
+    "create-jira-ticket-api": "^1.0.1",
+    "express": "^4.16.3",
+    "nodemailer": "^4.6.4"
+  }
+}

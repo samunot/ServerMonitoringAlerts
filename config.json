@@ -1,0 +1,9 @@
+{
+    "email": { "service": "gmail", "auth": { "user": "itrustv2test@gmail.com", "pass": "itrust299" } },
+    "slack": { "token": "xoxp-345589412053-346341300310-345453968258-a6eb9aa98b604c10c21ea71aab57aed1", "conversationID": "CA4SPBPMF" },
+    "eventAction": { "cpu": ["email"], "memory": ["email", "slack"], "disk": ["slack"], "queue": ["jira"] },
+    "action": { "email": 1, "slack": 2, "jira": 3 },
+    "alertValues": { "cpu": 95, "memory": 6000, "disk": 90, "queue": 10000 },
+    "mailOptions": { "from": "itrustv2test@gmail.com", "to": "shubham99@gmail.com", "subject": "disk usage over 90", "text": "Alert!" },
+    "jiraOptions": { "config": { "host": "your jira host", "username": "your jira username", "password": "your jira password", "datatype": "json" }, "data": { "fields": { "project": { "key": "project key" }, "summary": "your summary", "description": "your description", "issuetype": { "name": "your issuetype" }, "priority": { "name": "Highest" } } } }
+}

@@ -1,0 +1,7 @@
+[{
+    "type": "disk",
+    "action": ["slack"]
+}, {
+    "type": "memory",
+    "action": ["email", "slack"]
+}]
