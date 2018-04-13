@@ -25,19 +25,72 @@ actions. It also has alertValues which are values set for an event if surpassed 
 
 ## API
 
-1. /events:
+### 1. /events:
 
 This API takes an array of events and alert if any event has surpassed the alertValue.
 
-2. /changeActions:
+#### Example
+
+`curl -X PUT localhost:5000/events -H "Content-Type: application/json" -d @events.json`
+
+#### events.json
+
+`[{
+        "name": "host1",
+        "type": "disk",
+        "value": 90
+    },
+    {
+        "name": "host2",
+        "type": "cpu",
+        "value": 50
+    },
+    {
+        "name": "host1",
+        "type": "memory",
+        "value": 7500
+    },
+    {
+        "name": "kafka1",
+        "type": "queue",
+        "value": 5000
+    }
+]`
+
+### 2. /changeActions:
 
 This API takes an array of JSON objects (event and action) where each event might have multiple actions. It will then modify the config
 file and new actions would be triggered henceforth.
 
-3. /changeAlertValues:
+#### Example
+
+`curl -X PUT localhost:5000/changeActions -H "Content-Type: application/json" -d @changeActions.json`
+
+#### events.json
+
+`[{
+    "type": "disk",
+    "action": ["slack"]
+}, {
+    "type": "memory",
+    "action": ["email", "slack"]
+}]`
+
+### 3. /changeAlertValues:
 
 This API takes an array of JSON objects (event and alert value) where each event has a new alert value. It will then modify the config 
 file with these values and actions would be triggered if event passes these new values.
+
+#### Example
+
+`curl -X PUT localhost:5000/changeAlertValues -H "Content-Type: application/json" -d @alertValues.json`
+
+#### events.json
+
+`[{
+    "type": "memory",
+    "value": 6000
+}]`
 
 ## Questions
 
@@ -47,7 +100,7 @@ I had to design the server in a way that it can modify alerts and actions dynami
 
 ### Configuration consideration
 
-As I mentioned earlier, I chose this way to define my configuration because it makes the server dynamic and more responsive to change. Server doesn't have to be stopped plus you get the new changes. 
+As I mentioned earlier, I chose this way to define my configuration because it makes the server dynamic and more responsive to change. Server doesn't have to be stopped plus you get the new changes. For now I have given my passwords and tokens in config file which is highly not accepted, I would rather save those values in the environment variables and access it from there. 
 
 ### Performance/Scalability bottlenecks
 
